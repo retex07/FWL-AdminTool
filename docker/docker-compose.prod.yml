@@ -38,7 +38,7 @@ services:
       - env:/app/env
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - '8080:3000'
+      - '8086:3000'
     depends_on:
       - dbs
   dbs:

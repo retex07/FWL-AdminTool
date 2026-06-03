@@ -149,19 +149,19 @@ if [ -n "$CUSTOM_DOMAIN" ]; then
   CUSTOM_DOMAIN=$(echo "$CUSTOM_DOMAIN" | sed -e 's|^[^/]*//||' -e 's|/.*$||')
 fi
 
-ORIGINS="http://localhost:8080,http://127.0.0.1:8080,http://$LOCAL_IP:8080"
+ORIGINS="http://localhost:8086,http://127.0.0.1:8086,http://$LOCAL_IP:8086"
 
 if [ -n "$PUBLIC_IP" ]; then
-  ORIGINS="$ORIGINS,http://$PUBLIC_IP:8080,https://$PUBLIC_IP:8080"
+  ORIGINS="$ORIGINS,http://$PUBLIC_IP:8086,https://$PUBLIC_IP:8086"
 fi
 
 if [ -n "$CUSTOM_DOMAIN" ]; then
   ORIGINS="$ORIGINS,http://$CUSTOM_DOMAIN,https://$CUSTOM_DOMAIN"
   PRIMARY_ORIGIN="https://$CUSTOM_DOMAIN"
 elif [ -n "$PUBLIC_IP" ]; then
-  PRIMARY_ORIGIN="http://$PUBLIC_IP:8080"
+  PRIMARY_ORIGIN="http://$PUBLIC_IP:8086"
 else
-  PRIMARY_ORIGIN="http://$LOCAL_IP:8080"
+  PRIMARY_ORIGIN="http://$LOCAL_IP:8086"
 fi
 
 ENV_FILE="$INSTALL_DIR/.env"

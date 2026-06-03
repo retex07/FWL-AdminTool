@@ -16,7 +16,7 @@ import { dev } from '$app/environment'
 import { sequence } from '@sveltejs/kit/hooks'
 import '$lib/utils/prototypes'
 
-const DEFAULT_ORIGINS = ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:5173']
+const DEFAULT_ORIGINS = ['http://localhost:8086', 'http://127.0.0.1:8086', 'http://localhost:5173']
 
 const filesDir = path.resolve(process.cwd(), 'files')
 
