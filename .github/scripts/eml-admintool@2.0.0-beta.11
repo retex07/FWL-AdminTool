@@ -159,9 +159,9 @@ if [ -n "$CUSTOM_DOMAIN" ]; then
   ORIGINS="$ORIGINS,http://$CUSTOM_DOMAIN,https://$CUSTOM_DOMAIN"
   PRIMARY_ORIGIN="https://$CUSTOM_DOMAIN"
 elif [ -n "$PUBLIC_IP" ]; then
-  PRIMARY_ORIGIN="http://$PUBLIC_IP:8080"
+  PRIMARY_ORIGIN="http://$PUBLIC_IP:8086"
 else
-  PRIMARY_ORIGIN="http://$LOCAL_IP:8080"
+  PRIMARY_ORIGIN="http://$LOCAL_IP:8086"
 fi
 
 ENV_FILE="$INSTALL_DIR/.env"
@@ -206,7 +206,7 @@ start_docker() {
 if start_docker; then
   echo ""
   echo "${GREEN}EML AdminTool is successfully installed and running!${RESET}"
-  echo "Access it at ${BOLD}http://localhost:8080${RESET} or at ${BOLD}$PRIMARY_ORIGIN${RESET} if your reverse proxy is set up."
+  echo "Access it at ${BOLD}http://localhost:8086${RESET} or at ${BOLD}$PRIMARY_ORIGIN${RESET} if your reverse proxy is set up."
   echo ""
   echo "⭐️ Don't forget to star the GitHub repository! "
 else
