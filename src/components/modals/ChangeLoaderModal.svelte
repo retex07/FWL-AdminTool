@@ -31,24 +31,33 @@
   let jarFile: File | null = $state(null)
 
   let type: LoaderType = $state(loader.type ?? ILoaderType.VANILLA)
+  console.log('loaderList:', loaderList, 'type:', type)
   let majorVersion = $state(
     loader.minecraftVersion?.includes('latest') ? 'Latest' : (loader.minecraftVersion?.split('.').slice(0, 2).join('.') ?? '')
   )
+  console.log('majorVersion:', majorVersion)
   let minecraftVersion = $state(loader.minecraftVersion ?? '')
+  console.log('minecraftVersion:', minecraftVersion)
   let loaderVersion = $state(loader.loaderVersion ?? '')
+  console.log('loaderVersion:', loaderVersion)
 
   let minecraftVersions = $derived([...new Set(loaderList[type]?.map((version) => version.majorVersion))])
+  console.log('minecraftVersions:', minecraftVersions)
   let visibleVersions = $derived(loaderList[type]?.filter((l) => l.majorVersion === majorVersion) || [])
+  console.log('visibleVersions:', visibleVersions)
 
   let isFormValid = $derived.by(() => {
     return minecraftVersion && loaderVersion && type
   })
+  console.log('isFormValid:', isFormValid)
   let tempFabricLoaderVersion: string = $state(
     loader.type === ILoaderType.FABRIC && loader.loaderVersion ? loader.loaderVersion : (fabricLoaderVersions[0] ?? '')
   )
+  console.log('tempFabricLoaderVersion:', tempFabricLoaderVersion)
   let tempQuiltLoaderVersion: string = $state(
     loader.type === ILoaderType.QUILT && loader.loaderVersion ? loader.loaderVersion : (quiltLoaderVersions[0] ?? '')
   )
+  console.log('tempQuiltLoaderVersion:', tempQuiltLoaderVersion)
 
   function switchType(newType: LoaderType) {
     type = newType
