@@ -19,7 +19,7 @@
     loaderList: { [key: string]: LoaderVersion[] }
   }
 
-  let { show = $bindable(), selectedProfile, loader, fabricLoaderVersions, quiltLoaderVersions, loaderList }: Props = $props()
+  let { show = $bindable(), selectedProfile, loader, fabricLoaderVersions = [], quiltLoaderVersions = [], loaderList }: Props = $props()
 
   const latestInfo = 'Choosing this version will always force the Launcher to download the latest release.'
 
@@ -31,7 +31,7 @@
   let jarFile: File | null = $state(null)
 
   let type: LoaderType = $state(loader.type ?? ILoaderType.VANILLA)
-  console.log('loaderList:', loaderList, 'type:', type)
+  console.log('loaderList:', loaderList, 'type:', type, 'fabricLoaderVersions:', fabricLoaderVersions, 'quiltLoaderVersions:', quiltLoaderVersions)
   let majorVersion = $state(
     loader.minecraftVersion?.includes('latest') ? 'Latest' : (loader.minecraftVersion?.split('.').slice(0, 2).join('.') ?? '')
   )
