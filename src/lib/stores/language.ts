@@ -5,8 +5,9 @@ import da from '../locales/da'
 import de from '../locales/de'
 import it from '../locales/it'
 import ja from '../locales/ja'
+import ru from '../locales/ru'
 
-const languages = { en, fr, da, de, it, ja }
+const languages = { en, fr, da, de, it, ja, ru }
 
 export type LanguageCode = keyof typeof languages
 export const currentLanguage: Writable<LanguageCode> = writable<LanguageCode>('en')

@@ -58,6 +58,12 @@
 
     <p class="label">{$l.dashboard.emlatSettings.info.modal.language}</p>
     <div class="language">
+      <button type="button" class="secondary" class:selected={language === 'ru'} id="ru-button" onclick={() => (language = 'ru')}>
+          <p>
+            <img src="/images/flags/ru.png" alt="Флаг России" />
+            Русский
+          </p>
+      </button>
       <button type="button" class="secondary" class:selected={language === 'en'} id="en-button" onclick={() => (language = 'en')}>
         <p>
           <img src="/images/flags/en.png" alt="English flag" />

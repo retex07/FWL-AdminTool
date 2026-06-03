@@ -30,6 +30,12 @@
 
   <div>
     <div class="language">
+      <button type="button" class="secondary" class:selected={setupData.language === 'ru'} id="ru-button" onclick={() => switchLanguage('ru')}>
+        <p>
+          <img src="/images/flags/ru.png" alt="Флаг России" />
+          Русский
+        </p>
+      </button>
       <button type="button" class="secondary" class:selected={setupData.language === 'en'} id="en-button" onclick={() => switchLanguage('en')}>
         <p>
           <img src="/images/flags/en.png" alt="English flag" />
