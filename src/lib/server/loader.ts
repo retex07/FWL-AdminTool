@@ -48,7 +48,9 @@ export async function updateLoader(loader: Partial<Loader>, profileId: string = 
 
   try {
     if (existingLoader) {
+      console.log('before')
       await db.loader.update({ where: { id: existingLoader.id }, data: formattedLoader })
+      console.log('after')
     } else {
       await db.loader.create({ data: formattedLoader })
     }
