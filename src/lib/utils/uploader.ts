@@ -13,7 +13,7 @@ interface InitUploadRequest {
     overwrite: boolean
   }[]
 }
-//
+
 interface InitUploadResponse {
   results: {
     id: string
