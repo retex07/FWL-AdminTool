@@ -34,9 +34,7 @@ export const load = (async (event) => {
       getForgeLikeVersions(ILoaderType.FORGE),
       getForgeLikeVersions(ILoaderType.NEOFORGE),
       getFabricLikeGameVersions(ILoaderType.FABRIC),
-      getFabricLikeGameVersions(ILoaderType.QUILT),
       getFabricLikeLoaderVersions(ILoaderType.FABRIC),
-      getFabricLikeLoaderVersions(ILoaderType.QUILT),
       db.loader.findFirst({ where: { profileId: selectedProfile.id } }).catch((err) => {
         console.error('Failed to load loader:', err)
         throw new ServerError('Failed to load loader', err, NotificationCode.DATABASE_ERROR, 500)
@@ -47,8 +45,7 @@ export const load = (async (event) => {
       [ILoaderType.VANILLA]: vanilla,
       [ILoaderType.FORGE]: forge,
       [ILoaderType.NEOFORGE]: neoforge,
-      [ILoaderType.FABRIC]: fabric,
-      [ILoaderType.QUILT]: quilt
+      [ILoaderType.FABRIC]: fabric
     }
 
     const loader: Loader = databaseLoader?.loaderVersion
@@ -273,7 +270,7 @@ export const actions: Actions = {
         const res = await getForgeLikeFile(type, loaderVersion)
         file = res.file
         format = res.format
-      } else if (type === ILoaderType.FABRIC || type === ILoaderType.QUILT) {
+      } else if (type === ILoaderType.FABRIC) {
         checkFabricLikeLoader(type, minecraftVersion, loaderVersion)
       }
 
