@@ -28,12 +28,14 @@ export async function getLoader(profileId: string = '1'): Promise<Loader | null>
 export async function updateLoader(loader: Partial<Loader>, profileId: string = '1'): Promise<void> {
   let existingLoader
   try {
+    console.log('profileId:', profileId)
     existingLoader = await db.loader.findFirst({ where: { profileId } })
   } catch (err) {
     console.error('Failed to fetch existing loader:', err)
     throw new ServerError('Failed to fetch existing loader', err, NotificationCode.DATABASE_ERROR, 500)
   }
 
+  console.log('existingLoader:', existingLoader)
   const formattedLoader = {
     type: loader.type ?? ILoaderType.VANILLA,
     minecraftVersion: loader.minecraftVersion ?? 'latest_release',
@@ -42,6 +44,7 @@ export async function updateLoader(loader: Partial<Loader>, profileId: string = 
     file: (loader.file ?? null) as any,
     profileId
   }
+  console.log('formattedLoader:', formattedLoader)
 
   try {
     if (existingLoader) {
