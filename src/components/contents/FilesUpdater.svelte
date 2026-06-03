@@ -142,7 +142,7 @@
 
   async function deleteItems() {
     if (selectedItems.length === 0) return
-    if (!confirm('Are you sure you want to delete these files/folders? Folders may contains subfolders.')) return
+    if (!confirm('Вы уверены, что хотите удалить эти файлы/папки? Папки могут содержать подпапки.')) return
     ready = false
 
     const formData = new FormData()
@@ -184,11 +184,11 @@
     if (fileSize < 1000) {
       return `${file.size} ${b}`
     } else if (fileSize < 1000000) {
-      return `${(fileSize / 1000).toFixed(2)} K${b}`
+      return `${(fileSize / 1000).toFixed(2)} К${b}`
     } else if (fileSize < 2000000000) {
-      return `${(fileSize / 1000000).toFixed(2)} M${b}`
+      return `${(fileSize / 1000000).toFixed(2)} М${b}`
     } else {
-      return `${(fileSize / 1000000000).toFixed(2)} G${b}`
+      return `${(fileSize / 1000000000).toFixed(2)} Г${b}`
     }
   }
 </script>
@@ -244,7 +244,7 @@
   {/if}
 
   <button class="primary small add" style="margin-right: 30px" onclick={() => (addElementDropdownOpen = !addElementDropdownOpen)}>
-    <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;New items
+    <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;Новые элементы
   </button>
 
   <button
@@ -252,8 +252,9 @@
     disabled={selectedItems.length !== 1 || (selectedItems[0] && selectedItems[0].type === 'FOLDER')}
     onclick={downloadItem}
   >
-    <i class="fa-solid fa-cloud-arrow-down"></i>&nbsp;&nbsp;Download
+    <i class="fa-solid fa-cloud-arrow-down"></i>&nbsp;&nbsp;Скачать
   </button>
+
   <button
     class="secondary small"
     disabled={selectedItems.length !== 1}
@@ -261,16 +262,17 @@
       showRenameModal = true
     }}
   >
-    <i class="fa-solid fa-i-cursor"></i>&nbsp;&nbsp;Rename
+    <i class="fa-solid fa-i-cursor"></i>&nbsp;&nbsp;Переименовать
   </button>
+
   <button class="secondary small" disabled={selectedItems.length === 0} onclick={deleteItems}>
-    <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Delete
+    <i class="fa-solid fa-trash"></i>&nbsp;&nbsp;Удалить
   </button>
 
   {#if addElementDropdownOpen}
     <div class="add-element-dropdown" transition:slide={{ duration: 200 }}>
-      <button onclick={() => folderUpload.click()}><i class="fap-fix fa-solid fap-folder-arrow-up"></i>&nbsp;&nbsp;Upload folder</button>
-      <button onclick={() => filesUpload.click()}><i class="fap-fix fa-solid fa-file-arrow-up"></i>&nbsp;&nbsp;Upload files</button>
+      <button onclick={() => folderUpload.click()}>Загрузить папку</button>
+      <button onclick={() => filesUpload.click()}>Загрузить файлы</button>
       <hr />
       <button
         onclick={() => {
@@ -278,7 +280,7 @@
           showCreateFileModal = true
         }}
       >
-        <i class="fa-solid fa-folder-plus"></i>&nbsp;&nbsp;Create folder
+        Создать папку
       </button>
       <button
         onclick={() => {
@@ -286,7 +288,7 @@
           showCreateFileModal = true
         }}
       >
-        <i class="fa-solid fa-file-circle-plus"></i>&nbsp;&nbsp;Create file
+        Создать файл
       </button>
     </div>
   {/if}
@@ -311,22 +313,22 @@
   </table>
 
   {#if currentFilesAndFolders.length === 0}
-    <p class="nothing">No files or folders</p>
+    <p class="nothing">Нет файлов или папок</p>
   {/if}
 
   <div class="info">
     <p>
       {currentFilesAndFolders.length}
-      {currentFilesAndFolders.length > 1 ? 'items' : 'item'}
+      {currentFilesAndFolders.length > 1 ? 'элементов' : 'элемент'}
       ({currentFilesAndFolders.filter((item) => item.type === 'FOLDER').length}
-      {currentFilesAndFolders.filter((item) => item.type === 'FOLDER').length > 1 ? 'folders' : 'folder'},
+      {currentFilesAndFolders.filter((item) => item.type === 'FOLDER').length > 1 ? 'папок' : 'папка'},
       {currentFilesAndFolders.filter((item) => item.type !== 'FOLDER').length}
-      {currentFilesAndFolders.filter((item) => item.type !== 'FOLDER').length > 1 ? 'files' : 'file'})
+      {currentFilesAndFolders.filter((item) => item.type !== 'FOLDER').length > 1 ? 'файлов' : 'файл'})
     </p>
     {#if selectedItems.length === 1}
-      <p>1 item selected</p>
+      <p>Выбран 1 элемент</p>
     {:else if selectedItems.length > 1}
-      <p>{selectedItems.length} items selected</p>
+      <p>Выбрано {selectedItems.length} элементов</p>
     {/if}
   </div>
 </div>
