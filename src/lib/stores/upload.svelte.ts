@@ -16,6 +16,7 @@ class UploadStore {
   private fileProgress = new Map<string, number>()
 
   async startUpload(files: File[], currentPath: string, slug: string, onFileUploaded?: (newFile: File_) => void) {
+    console.log('files startUpload:', files)
     if (files.length === 0) return
 
     this.isUploading = true

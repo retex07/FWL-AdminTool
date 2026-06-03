@@ -52,6 +52,7 @@
     if (!target.files || target.files.length === 0) return
 
     const filesArray = Array.from(target.files)
+    console.log('filesArray:', filesArray)
 
     const optimisticFolders: File_[] = []
 
@@ -85,9 +86,11 @@
       files = [...files, ...optimisticFolders]
     }
 
+    console.log('files:', files)
     uploader.startUpload(filesArray, currentPath, selectedProfile.slug, (newFile: File_) => {
       files = [...files.filter((f) => f.name !== newFile.name || f.path !== newFile.path), newFile]
     })
+    console.log('files 2:', files)
 
     if (folderUpload) {
       folderUpload.value = ''

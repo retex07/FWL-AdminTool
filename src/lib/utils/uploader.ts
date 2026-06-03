@@ -66,6 +66,7 @@ export async function calculateSha256(file: File): Promise<string> {
 const CHUNK_SIZE = 5 * 1024 * 1024
 
 export async function smartUpload(files: File[], options: UploadOptions): Promise<boolean> {
+  console.log('files smartUpload:', files)
   if (!files.length) return true
 
   const intentions: FileIntention[] = await Promise.all(
@@ -78,6 +79,7 @@ export async function smartUpload(files: File[], options: UploadOptions): Promis
       overwrite: options.mode === 'ALL_OR_NOTHING'
     }))
   )
+  console.log('intentions smartUpload:', intentions)
 
   let approvedUploads = await performHandshake(intentions, options)
 
