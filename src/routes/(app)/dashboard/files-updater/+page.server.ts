@@ -238,19 +238,23 @@ export const actions: Actions = {
   changeLoader: async (event) => {
     const user = event.locals.user
 
+    console.log('user:', user)
     if (!user) {
       throw error(401, { message: NotificationCode.UNAUTHORIZED })
     }
 
     const form = await event.request.formData()
+    console.log('form:', form)
     const raw = {
       profileId: form.get('profile-id'),
       type: form.get('type'),
       minecraftVersion: form.get('minecraft-version'),
       loaderVersion: form.get('loader-version')
     }
+    console.log('raw:', raw)
 
     const result = loaderSchema.safeParse(raw)
+    console.log('result:', result)
     if (!result.success) {
       return fail(event, 400, { failure: JSON.parse(result.error.message)[0].message })
     }
@@ -259,6 +263,7 @@ export const actions: Actions = {
 
     try {
       const profile = await resolveProfile(profileId, user.id, user.isAdmin, 2)
+      console.log('profile:', profile)
 
       let file: any = null
       let format: LoaderFormat = ILoaderFormat.CLIENT
@@ -268,6 +273,7 @@ export const actions: Actions = {
       } else if (type === ILoaderType.FORGE || type === ILoaderType.NEOFORGE) {
         checkForgeLikeLoader(type, minecraftVersion, loaderVersion)
         const res = await getForgeLikeFile(type, loaderVersion)
+        console.log('res:', res)
         file = res.file
         format = res.format
       } else if (type === ILoaderType.FABRIC) {

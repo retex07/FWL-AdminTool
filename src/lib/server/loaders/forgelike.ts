@@ -100,7 +100,9 @@ export async function getForgeLikeVersions(loader: ForgeLikeLoader): Promise<Loa
 }
 
 export async function checkForgeLikeLoader(loader: ForgeLikeLoader, minecraftVersion: string, loaderVersion: string): Promise<void> {
+  console.log('minecraftVersion:', minecraftVersion, 'loaderVersion:', loaderVersion, 'loader:', loader)
   const versions = await getForgeLikeVersions(loader)
+  console.log('versions:', versions)
   const exists = versions.some((v) => v.minecraftVersion === minecraftVersion && v.loaderVersion === loaderVersion)
 
   if (!exists) {
