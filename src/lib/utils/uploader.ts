@@ -1,5 +1,6 @@
 import type { Context } from './types'
 import type { File as File_ } from '$lib/utils/types'
+import { sha256 } from 'js-sha256'
 
 interface InitUploadRequest {
   context: Context
@@ -58,9 +59,7 @@ interface FileIntention {
 
 export async function calculateSha256(file: File): Promise<string> {
   const buffer = await file.arrayBuffer()
-  const hashBuffer = await crypto.subtle.digest('SHA-256', buffer)
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-  return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+  return sha256(new Uint8Array(buffer))
 }
 
 const CHUNK_SIZE = 5 * 1024 * 1024
