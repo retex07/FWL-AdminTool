@@ -51,7 +51,7 @@
   })
   console.log('isFormValid:', isFormValid)
   let tempFabricLoaderVersion: string = $state(
-    loader.type === ILoaderType.FABRIC && loader.loaderVersion ? loader.loaderVersion : (fabricLoaderVersions[0] ?? '')
+    loader.type === ILoaderType.FABRIC && loader.loaderVersion ? loader.loaderVersion : ((fabricLoaderVersions ? fabricLoaderVersions[0] : '') ?? '')
   )
   console.log('tempFabricLoaderVersion:', tempFabricLoaderVersion)
   let tempQuiltLoaderVersion: string = $state(
