@@ -13,6 +13,7 @@
   import { page } from '$app/state'
 
   let { data }: PageProps = $props()
+  console.log('data:', data)
 
   const env = getEnv()
   const user = getUser()
@@ -252,7 +253,7 @@
 
     <div class="container">
       <div>
-        <p class="label">Minecraft version</p>
+        <p class="label">Minecraft версия</p>
         <p>
           {data.loader.minecraftVersion === 'latest_release'
             ? 'Latest release'
@@ -263,7 +264,7 @@
       </div>
 
       <div>
-        <p class="label">Loader</p>
+        <p class="label">Загрузчик</p>
         <p>
           {data.loader.type === ILoaderType.FORGE
             ? 'Forge'
@@ -278,7 +279,7 @@
       </div>
 
       <div>
-        <p class="label">Loader version</p>
+        <p class="label">Версия загрузчика</p>
         <p>
           {data.loader.loaderVersion === 'latest_release'
             ? 'Latest release'
@@ -290,14 +291,14 @@
 
       <div>
         <p class="label">
-          Format (auto)&nbsp;&nbsp;<i
+          Формат (auto)&nbsp;&nbsp;<i
             class="fa-solid fa-circle-question"
             title="This field is automatically deduced from the loader version."
             style="cursor: help"
           ></i>
         </p>
         <p>
-          {data.loader.format === ILoaderFormat.INSTALLER ? 'Installer' : data.loader.format === ILoaderFormat.UNIVERSAL ? 'Universal' : 'Client'}
+          {data.loader.format === ILoaderFormat.INSTALLER ? 'Установщик' : data.loader.format === ILoaderFormat.UNIVERSAL ? 'Universal' : 'Клиент'}
         </p>
       </div>
     </div>
