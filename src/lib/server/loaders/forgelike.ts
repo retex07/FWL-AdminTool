@@ -19,7 +19,7 @@ const V = {
   },
   [ILoaderType.NEOFORGE]: {
     name: 'NeoForge',
-    mavenUrl: 'https://maven.neoforged.net/releases',
+    mavenUrl: 'https://neoforged.forgecdn.net/releases',
     group: 'net.neoforged',
     artifact: 'neoforge',
     promotionsUrl: null
