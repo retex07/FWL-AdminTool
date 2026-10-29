@@ -21,7 +21,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   const currentLock = targetPath ? activeUploads.get(targetPath) : null
 
   if (!currentLock || currentLock.token !== token || currentLock.userId !== user.id) {
-    return json({ message: 'Forbidden or expired session' }, { status: 403 })
+    return json({ message: 'Forbidden or expired session', currentLock, token, userId: user.id }, { status: 403 })
   }
 
   try {
